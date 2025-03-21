@@ -32,6 +32,8 @@ public class UserController {
         user.setPassword(pssswordEncoder.encode(user.getPassword()));
         User savedUser = userRepository.save(user);
         return ResponseEntity.ok(savedUser);
+
+
     }
 
 }
