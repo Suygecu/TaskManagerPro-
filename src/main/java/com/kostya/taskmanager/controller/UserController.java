@@ -1,9 +1,9 @@
 package com.kostya.taskmanager.controller;
 
-import com.kostya.taskmanager.dto.UserRequestDto;
-import com.kostya.taskmanager.dto.UserResponseDto;
+import com.kostya.taskmanager.dto.userdto.UserRequestDto;
+import com.kostya.taskmanager.dto.userdto.UserResponseDto;
 
-import com.kostya.taskmanager.dto.UserUpdateDto;
+import com.kostya.taskmanager.dto.userdto.UserUpdateDto;
 import com.kostya.taskmanager.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -1,6 +1,6 @@
 package com.kostya.taskmanager.security;
 
-import com.kostya.taskmanager.dto.UserRequestDto;
+import com.kostya.taskmanager.dto.userdto.UserRequestDto;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

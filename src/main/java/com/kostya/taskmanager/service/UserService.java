@@ -1,9 +1,8 @@
 package com.kostya.taskmanager.service;
 
-import com.kostya.taskmanager.dto.UserDeleteDto;
-import com.kostya.taskmanager.dto.UserRequestDto;
-import com.kostya.taskmanager.dto.UserResponseDto;
-import com.kostya.taskmanager.dto.UserUpdateDto;
+import com.kostya.taskmanager.dto.userdto.UserRequestDto;
+import com.kostya.taskmanager.dto.userdto.UserResponseDto;
+import com.kostya.taskmanager.dto.userdto.UserUpdateDto;
 import com.kostya.taskmanager.model.User;
 import com.kostya.taskmanager.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,10 +18,10 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
     private UserRequestDto userDto;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, UserRequestDto userDto) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
-        this.userDto = userDto;
+
     }
 
     public List<UserResponseDto> getAllUsers() {
