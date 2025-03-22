@@ -1,10 +1,11 @@
 package com.kostya.taskmanager.controller;
 
-import com.kostya.taskmanager.model.User;
-import com.kostya.taskmanager.repository.UserRepository;
+import com.kostya.taskmanager.dto.UserRequestDto;
+import com.kostya.taskmanager.dto.UserResponseDto;
+
+import com.kostya.taskmanager.dto.UserUpdateDto;
+import com.kostya.taskmanager.service.UserService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,29 +13,32 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/users")
 public class UserController {
-    private final UserRepository userRepository;
-    private final PasswordEncoder pssswordEncoder = new BCryptPasswordEncoder();
 
-    public UserController(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    private final UserService userService;
 
-    @GetMapping
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
     @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody User user) {
-        if (user.getPassword() == null || user.getPassword().isEmpty()) {
-            return ResponseEntity.badRequest().body(user);
-        }
-        user.setPassword(pssswordEncoder.encode(user.getPassword()));
-        User savedUser = userRepository.save(user);
-        return ResponseEntity.ok(savedUser);
-
-
-
+    public ResponseEntity<UserResponseDto> createUser(@RequestBody UserRequestDto userDto) {
+        return ResponseEntity.ok(userService.createUser(userDto));
     }
+
+    @GetMapping
+    public List<UserResponseDto> getAllUsers() {
+        return userService.getAllUsers();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<UserResponseDto> updateUser(@PathVariable Long id, @RequestBody UserUpdateDto userUpdateDto) {
+        return ResponseEntity.ok(userService.updateUser(id, userUpdateDto));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<UserResponseDto> deleteUser(@PathVariable Long id) {
+        return ResponseEntity.ok(userService.deleteUser(id));
+    }
+
 
 }
