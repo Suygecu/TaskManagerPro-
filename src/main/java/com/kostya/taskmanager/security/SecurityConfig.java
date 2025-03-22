@@ -1,4 +1,4 @@
-package com.kostya.taskmanager;
+package com.kostya.taskmanager.security;
 
 import com.kostya.taskmanager.dto.UserRequestDto;
 import org.springframework.context.annotation.Bean;
